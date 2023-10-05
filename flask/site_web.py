@@ -157,20 +157,19 @@ def graphique():
     mem = curseur.execute('SELECT mem from monitoring;').fetchall()
     cpu1= list(cpu[-1])
     mem1 = list(mem[-1])
-    permissions = 0o777
     pourcent_bat = curseur.execute('SELECT Pourcentage_BAT from VALEURS_CAPTEURS;').fetchall()
     extracted_list_bat = [item for tuple_ in pourcent_bat for item in tuple_]
-    bat_affiche=[]
-    for i in range (5):
+    bat_affiche = []
+    for i in range(5):
         bat_affiche.append(extracted_list_bat[-1 - i])
-    print("valeur affiche batterie ---->",bat_affiche)
+    print("valeur affiche batterie ---->", bat_affiche)
     
     date = curseur.execute('SELECT date_jour from VALEURS_CAPTEURS;').fetchall()
     date1 = []
-    for i in range (5):
+    for i in range(5):
         date1.append(list(date[-1 - i]))
     date_liste = [x[0] for x in date1]
-    print("c'est la date ---->",date_liste)
+    print("c'est la date ---->", date_liste)
 
     fig, ax1 = plt.subplots()
     ax1.plot(date_liste,bat_affiche)
@@ -179,8 +178,9 @@ def graphique():
     ax1.set_title('Graphique 1')
     
     fig.autofmt_xdate()
-    plt.savefig('static/ressource/graph/graph_bat.png')
     fichier = 'static/ressource/graph/graph_bat.png'
+    plt.savefig(fichier)
+    permissions = 0o777
     os.chmod(fichier, permissions)
     courant = curseur.execute('SELECT Courant from VALEURS_CAPTEURS;').fetchall()
     extracted_list_courant = [item for tuple_ in courant for item in tuple_]
@@ -196,12 +196,12 @@ def graphique():
     ax2.set_title('Graphique 2')
     
     fig.autofmt_xdate()
-    plt.savefig('static/ressource/graph/graph_courant.png')
     fichier = 'static/ressource/graph/graph_courant.png'
+    plt.savefig(fichier)
     os.chmod(fichier, permissions)
     
     print("---------------------------------------------------------------------------------")
-    return render_template('graphique.html',mem = mem1[0], cpuload = cpu1[0])
+    return render_template('graphique.html', mem = mem1[0], cpuload = cpu1[0])
 
 #//////////////////////////////////////////////////////////////////////////////////////////A PROPOS/////////////////
 @app.route('/a_propos')
