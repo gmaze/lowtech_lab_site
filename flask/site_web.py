@@ -307,11 +307,12 @@ def get():
 
 if __name__ == "__main__":
     # app.run(host="0.0.0.0", debug=True)
-    with app.app_context():
-        t1 = threading.Thread(target=valeur)
-        t1.start()
+    # with app.app_context():
+    #     t1 = threading.Thread(target=valeur)
+    #     t1.start()
 
-    print("Adresse du site: http://127.0.0.1:5000")
+    print("Adresse du site: http://127.0.0.1:5012")
     print("Le site est accessible depuis son ip local aussi.")
     print("En cours d'exécution...")
-    serve(app, host='0.0.0.0', port= 5000)
+    serve(app, host='0.0.0.0', port= 5012)
+    # serve(app, host='0.0.0.0')

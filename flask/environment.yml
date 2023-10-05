@@ -1,0 +1,12 @@
+name: lowtechlab
+channels:
+  - conda-forge
+dependencies:
+  - flask
+  - sqlite
+  - werkzeug
+  - waitress
+  - psutil
+  - matplotlib
+#  - pip:
+#      - re

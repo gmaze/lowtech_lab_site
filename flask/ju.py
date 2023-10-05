@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 from pijuice import PiJuice
 import time
